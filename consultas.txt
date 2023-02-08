@@ -1,0 +1,7 @@
+- Realizar una consulta que permita conocer cuál es el producto que más stock tiene.
+SELECT id_producto,descripcion, existencia FROM productos WHERE existencia = (SELECT MAX(existencia ) FROM productos)
+
+-Realizar una consulta que permita conocer cuál es el producto más vendido.
+
+SELECT productos.descripcion, SUM(detallefactura.cantidad) as cantidad    FROM detallefactura JOIN productos ON detallefactura.codproducto = productos.id_producto     GROUP BY productos.id_producto
+ORDER BY SUM(detallefactura.cantidad) DESC LIMIT 1;
